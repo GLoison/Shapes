@@ -20,7 +20,11 @@ public class FontAttributes extends Attributes{
 	}
 	public Graphics g;
 	public Font font;
-	public Color fontColor = Color.BLACK;
+	public Color fontColor;
+	
+	public FontAttributes() {
+		this.fontColor=Color.BLACK;
+	}
 	
 	public Rectangle getBounds(String rect) {
 		//System.out.println(font);

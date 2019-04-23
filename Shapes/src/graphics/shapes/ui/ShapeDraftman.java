@@ -8,6 +8,7 @@ import graphics.shapes.SCircle;
 import graphics.shapes.SCollection;
 import graphics.shapes.SRectangle;
 import graphics.shapes.SText;
+import graphics.shapes.STriangle;
 import graphics.shapes.Shape;
 import graphics.shapes.ShapeVisitor;
 import graphics.shapes.attributes.ColorAttributes;
@@ -108,6 +109,31 @@ public class ShapeDraftman implements ShapeVisitor{
 			ShapeDraftman.graph.drawRect(collec.getLoc().x+collec.getBounds().width, collec.getLoc().y+collec.getBounds().height, 10,10);
 		}
 
+	}
+
+
+	@Override
+	public void visitTriangle(STriangle tria) {
+		// TODO Auto-generated method stub
+		ColorAttributes c = (ColorAttributes) tria.getAttributes("Color");
+		SelectionAttributes s= (SelectionAttributes) tria.getAttributes("Selection");
+		
+		if (c.isStroked()) {
+			ShapeDraftman.graph.setColor(c.getStrokedColor());
+			ShapeDraftman.graph.drawPolygon(tria.getTriangle());
+		}
+		
+		
+		if (c.isFilled()) {
+			ShapeDraftman.graph.setColor(c.getFilledColor());
+			ShapeDraftman.graph.fillPolygon(tria.getTriangle());
+		}
+		
+		if(s.isSelected()) {
+			ShapeDraftman.graph.setColor(Color.BLACK);
+			ShapeDraftman.graph.drawRect(tria.getLoc().x-10, tria.getLoc().y-10, 10,10);
+			ShapeDraftman.graph.drawRect(tria.getLoc().x+tria.getBounds().width, tria.getLoc().y+tria.getBounds().height, 10,10);
+		}
 	}
 
 

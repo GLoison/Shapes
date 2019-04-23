@@ -5,7 +5,7 @@ import java.awt.Rectangle;
 
 public class SRectangle extends Shape {
 
-	private  Rectangle rect=new Rectangle();
+	private  Rectangle rect;
 	
 	public SRectangle(Point loc,int width,int height) {
 		this.rect=new Rectangle(loc.x,loc.y,width,height);

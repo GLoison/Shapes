@@ -6,4 +6,5 @@ public interface ShapeVisitor {
 	public void visitCircle(SCircle circle);
 	public void visitText(SText txt);
 	public void visitCollection(SCollection collec);
+	public void visitTriangle(STriangle tria);
 }

@@ -18,6 +18,7 @@ import graphics.shapes.SCircle;
 import graphics.shapes.SCollection;
 import graphics.shapes.SRectangle;
 import graphics.shapes.SText;
+import graphics.shapes.STriangle;
 import graphics.shapes.attributes.ColorAttributes;
 import graphics.shapes.attributes.FontAttributes;
 import graphics.shapes.attributes.SelectionAttributes;
@@ -54,7 +55,7 @@ public class Editor extends JFrame
 		this.model = new SCollection();
 		this.model.addAttributes(new SelectionAttributes());
 		
-		SRectangle r = new SRectangle(new Point(10,10),20,30);
+		SRectangle r = new SRectangle(new Point(10,10),200,300);
 		r.addAttributes(new ColorAttributes(true,true,Color.BLUE,Color.RED));
 		r.addAttributes(new SelectionAttributes());
 		this.model.add(r);
@@ -69,6 +70,11 @@ public class Editor extends JFrame
 		t.addAttributes(new FontAttributes());
 		t.addAttributes(new SelectionAttributes());
 		this.model.add(t);
+		
+		STriangle tr= new STriangle(new Point(10,10),new Point(25,50),new Point(40,30));
+		tr.addAttributes(new ColorAttributes(true,true,Color.BLUE,Color.RED));
+		tr.addAttributes(new SelectionAttributes());
+		this.model.add(tr);
 		
 		SCollection sc = new SCollection();
 		sc.addAttributes(new SelectionAttributes());

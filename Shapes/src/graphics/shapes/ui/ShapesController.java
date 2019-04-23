@@ -26,9 +26,7 @@ public class ShapesController extends Controller {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Iterator<Shape> iterator() {
-		return selec.iterator();
-	}
+
 
 	public Shape getTarget(MouseEvent e) {
 		SCollection col= (SCollection) getModel();
@@ -58,11 +56,10 @@ public class ShapesController extends Controller {
 	}
 	
 	private void unselectAll() {
-		selec.clear();
 		for(Iterator<Shape> it=selec.iterator();it.hasNext();){
 			((SelectionAttributes) it.next().getAttributes("Selection")).unselect();
 		}
-		
+		selec.clear();
 	}
 	
 	@Override
