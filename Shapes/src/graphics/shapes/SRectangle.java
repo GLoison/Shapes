@@ -3,6 +3,8 @@ package graphics.shapes;
 import java.awt.Point;
 import java.awt.Rectangle;
 
+import graphics.shapes.attributes.ImageAttributes;
+
 public class SRectangle extends Shape {
 
 	private  Rectangle rect;
@@ -28,10 +30,16 @@ public class SRectangle extends Shape {
 	}
 	
 	public Rectangle getBounds() {
+		ImageAttributes i= (ImageAttributes) getAttributes("Image");
+		if (i.isImage()) {
+			Rectangle bd = new Rectangle(this.getLoc().x,this.getLoc().y,i.getImage().getWidth(null),i.getImage().getHeight(null));
+			return bd;
+		}
 		return rect.getBounds();
 	}
 	
 	public void accept(ShapeVisitor sv) {
 		sv.visitRectangle(this);
 	}
+
 }

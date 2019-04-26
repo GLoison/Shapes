@@ -1,16 +1,10 @@
 package graphics.shapes.ui;
 
-//import graphics.shapes.SCircle;
-//import graphics.shapes.SCollection;
-//import graphics.shapes.SRectangle;
-//import graphics.shapes.SText;
-//import graphics.shapes.attributes.ColorAttributes;
-//import graphics.shapes.attributes.FontAttributes;
-//import graphics.shapes.attributes.SelectionAttributes;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
+import java.io.File;
+import java.io.IOException;
 
 import javax.swing.JFrame;
 
@@ -21,6 +15,7 @@ import graphics.shapes.SText;
 import graphics.shapes.STriangle;
 import graphics.shapes.attributes.ColorAttributes;
 import graphics.shapes.attributes.FontAttributes;
+import graphics.shapes.attributes.ImageAttributes;
 import graphics.shapes.attributes.SelectionAttributes;
 
 public class Editor extends JFrame
@@ -29,7 +24,7 @@ public class Editor extends JFrame
 	SCollection model;
 	
 	
-	public Editor()
+	public Editor() throws IOException
 	{	
 		super("Shapes Editor");
 
@@ -44,20 +39,21 @@ public class Editor extends JFrame
 		this.buildModel();
 		
 		this.sview = new ShapesView(this.model);
-		this.sview.setPreferredSize(new Dimension(300,300));
+		this.sview.setPreferredSize(new Dimension(3000,3000));
 		this.getContentPane().add(this.sview, java.awt.BorderLayout.CENTER);
 	}
 
 	
-	private void buildModel()
+	private void buildModel() throws IOException
 	{
 		
 		this.model = new SCollection();
 		this.model.addAttributes(new SelectionAttributes());
 		
 		SRectangle r = new SRectangle(new Point(10,10),200,300);
-		r.addAttributes(new ColorAttributes(true,true,Color.BLUE,Color.RED));
+		r.addAttributes(new ColorAttributes(false,false,Color.BLUE,Color.RED));
 		r.addAttributes(new SelectionAttributes());
+		r.addAttributes(new ImageAttributes(new File("IMG_1581.jpg"),true));
 		this.model.add(r);
 		
 		SCircle c = new SCircle(new Point(100,100),10);
@@ -81,6 +77,7 @@ public class Editor extends JFrame
 		r= new SRectangle(new Point(20,30),30,30);
 		r.addAttributes(new ColorAttributes(true,false,Color.MAGENTA,Color.BLUE));
 		r.addAttributes(new SelectionAttributes());
+		r.addAttributes(new ImageAttributes(new File("IMG_1581.jpg"),false));
 		sc.add(r);
 		c = new SCircle(new Point(150,100),20);
 		c.addAttributes(new ColorAttributes(false,true,Color.BLUE,Color.DARK_GRAY));
@@ -89,7 +86,7 @@ public class Editor extends JFrame
 		this.model.add(sc);
 	}
 	
-	public static void main(String[] args)
+	public static void main(String[] args) throws IOException
 	{
 		Editor self = new Editor();
 		self.pack();

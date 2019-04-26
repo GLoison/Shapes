@@ -13,6 +13,7 @@ import graphics.shapes.Shape;
 import graphics.shapes.ShapeVisitor;
 import graphics.shapes.attributes.ColorAttributes;
 import graphics.shapes.attributes.FontAttributes;
+import graphics.shapes.attributes.ImageAttributes;
 import graphics.shapes.attributes.SelectionAttributes;
 
 public class ShapeDraftman implements ShapeVisitor{
@@ -31,6 +32,7 @@ public class ShapeDraftman implements ShapeVisitor{
 		
 		ColorAttributes c = (ColorAttributes) rect.getAttributes("Color");
 		SelectionAttributes s= (SelectionAttributes) rect.getAttributes("Selection");
+		ImageAttributes i= (ImageAttributes) rect.getAttributes("Image");
 		
 		if (c.isStroked()) {
 			ShapeDraftman.graph.setColor(c.getStrokedColor());
@@ -43,11 +45,16 @@ public class ShapeDraftman implements ShapeVisitor{
 			ShapeDraftman.graph.fillRect(rect.getLoc().x+1, rect.getLoc().y+1, rect.getRect().width-1,rect.getRect().height-1);
 		}
 		
+		if (i.isImage()) {
+			ShapeDraftman.graph.drawImage(i.getImage(), rect.getLoc().x, rect.getLoc().y, null);
+		}
+		
 		if(s.isSelected()) {
 			ShapeDraftman.graph.setColor(Color.BLACK);
 			ShapeDraftman.graph.drawRect(rect.getLoc().x-10, rect.getLoc().y-10, 10,10);
-			ShapeDraftman.graph.drawRect(rect.getLoc().x+rect.getRect().width, rect.getLoc().y+rect.getRect().height, 10,10);
+			ShapeDraftman.graph.drawRect(rect.getLoc().x+rect.getBounds().width, rect.getLoc().y+rect.getBounds().height, 10,10);
 		}
+		
 	}
 
 	@Override
@@ -135,6 +142,4 @@ public class ShapeDraftman implements ShapeVisitor{
 			ShapeDraftman.graph.drawRect(tria.getLoc().x+tria.getBounds().width, tria.getLoc().y+tria.getBounds().height, 10,10);
 		}
 	}
-
-
 }
