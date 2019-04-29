@@ -32,6 +32,7 @@ public abstract class Shape {
 	public abstract void translate(int dx,int dy);
 	public abstract Rectangle getBounds();
 	public abstract void accept(ShapeVisitor sv);
+	public abstract void setSize(int dw, int dh);
 
 
 

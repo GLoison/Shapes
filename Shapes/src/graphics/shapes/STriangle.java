@@ -49,4 +49,10 @@ public class STriangle extends Shape {
 		sv.visitTriangle(this);
 	}
 
+	@Override
+	public void setSize(int dw, int dh) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

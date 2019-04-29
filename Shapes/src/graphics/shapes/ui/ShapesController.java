@@ -62,6 +62,13 @@ public class ShapesController extends Controller {
 		selec.clear();
 	}
 	
+	private void changeSize(Shape sh,MouseEvent e) {
+		int dw = e.getPoint().x-MP.x;
+		int dh = e.getPoint().y-MP.y;
+		sh.setSize(dw, dh);
+		MP= new Point(e.getPoint().x,e.getPoint().y);
+	}
+	
 	@Override
 	public void mousePressed(MouseEvent e)
 	{
@@ -70,7 +77,6 @@ public class ShapesController extends Controller {
 		if(sh!=null) {
 			((SelectionAttributes) sh.getAttributes("Selection")).select();
 			selec.add(sh);
-			System.out.println("select");
 		}	
 		super.getView().repaint();
 	}
@@ -84,7 +90,6 @@ public class ShapesController extends Controller {
 		if(sh!=null) {
 			selec.remove(sh);
 			((SelectionAttributes) sh.getAttributes("Selection")).unselect();
-			System.out.println("unselect");
 		}
 		super.getView().repaint();
 	}
@@ -98,7 +103,6 @@ public class ShapesController extends Controller {
 			if(sh!=null) {
 				selec.add(sh);
 				((SelectionAttributes) sh.getAttributes("Selection")).toggleSelection();
-				System.out.println("toggle");
 			}	
 		}
 		else {
@@ -117,7 +121,33 @@ public class ShapesController extends Controller {
 	@Override
 	public void mouseDragged(MouseEvent evt)
 	{
-		translateSelected(evt.getPoint().x,evt.getPoint().y);
+		Shape s =selec.get(0);
+		if(((SelectionAttributes) s.getAttributes("Selection")).isSelected()){
+			Rectangle r1 =new Rectangle(s.getLoc().x-15, s.getLoc().y-15,20,20);
+			Rectangle r2 =new Rectangle(s.getLoc().x+s.getBounds().width-5, s.getLoc().y+s.getBounds().height-5, 20,20);
+			if(r2.contains(evt.getPoint())) {
+				int dw = evt.getPoint().x-MP.x;
+				int dh = evt.getPoint().y-MP.y;
+				s.setSize(dw, dh);
+				MP= new Point(evt.getPoint().x,evt.getPoint().y);
+			}
+			if(r1.contains(evt.getPoint())) {
+				s.setLoc(evt.getPoint());
+				int dw = MP.x-evt.getPoint().x;
+				int dh = MP.y-evt.getPoint().y;
+				s.setSize(dw, dh);
+				MP= new Point(evt.getPoint().x-5,evt.getPoint().y-5);
+			}
+		}
+		
+		Rectangle bd = selec.get(0).getBounds();
+		for(Iterator<Shape> it=selec.iterator();it.hasNext();){
+			bd = bd.union(it.next().getBounds());
+		}
+		if(bd.contains(evt.getPoint())) {
+			translateSelected(evt.getPoint().x,evt.getPoint().y);
+		}
+		
 		super.getView().repaint();
 	}
 	

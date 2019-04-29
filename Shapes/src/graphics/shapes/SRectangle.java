@@ -25,6 +25,12 @@ public class SRectangle extends Shape {
 		rect.setLocation(pt);
 	}
 	
+	public void setSize(int dw, int dh) {
+		rect.setSize(rect.width+dw, rect.height+dh);
+		System.out.println(rect.getSize());
+	}
+	
+	
 	public void translate(int dx,int dy) {
 		rect.translate(dx, dy);
 	}

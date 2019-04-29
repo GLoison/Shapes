@@ -5,7 +5,7 @@ import java.awt.Rectangle;
 
 public class SCircle extends Shape{
 	
-	private int radius;
+	private double radius;
 	private Point loc;
 	
 	public SCircle(Point point, int i) {
@@ -14,11 +14,11 @@ public class SCircle extends Shape{
 	}
 
 	public int getRadius() {
-		return this.radius;
+		return (int) this.radius;
 	}
 	
-	public void setRadius(int rad) {
-		this.radius=rad;
+	public void setRadius(double d) {
+		this.radius=d;
 	}
 	
 	@Override
@@ -38,13 +38,27 @@ public class SCircle extends Shape{
 
 	@Override
 	public Rectangle getBounds() {
-		Rectangle rect= new Rectangle(this.loc.x,this.loc.y,2*this.radius,2*this.radius);
+		int wh =(int) (2*this.radius);
+		Rectangle rect= new Rectangle(this.loc.x,this.loc.y,wh,wh);
 		return rect;
 	}
 
 	@Override
 	public void accept(ShapeVisitor sv) {
 		sv.visitCircle(this);
+	}
+
+	@Override
+	public void setSize(int dw, int dh) {
+		// TODO Auto-generated method stub
+		double d =(Math.sqrt(Math.pow(dw,2)+Math.pow(dh,2))/2);
+		System.out.println(d);
+		if(dw<0) {
+			setRadius(this.radius-d);
+		}
+		else {
+			setRadius(d+this.radius);
+		}
 	}
 	
 	

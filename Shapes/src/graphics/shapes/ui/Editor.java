@@ -39,7 +39,7 @@ public class Editor extends JFrame
 		this.buildModel();
 		
 		this.sview = new ShapesView(this.model);
-		this.sview.setPreferredSize(new Dimension(3000,3000));
+		this.sview.setPreferredSize(new Dimension(300,300));
 		this.getContentPane().add(this.sview, java.awt.BorderLayout.CENTER);
 	}
 
@@ -50,40 +50,40 @@ public class Editor extends JFrame
 		this.model = new SCollection();
 		this.model.addAttributes(new SelectionAttributes());
 		
-		SRectangle r = new SRectangle(new Point(10,10),200,300);
-		r.addAttributes(new ColorAttributes(false,false,Color.BLUE,Color.RED));
+		SRectangle r = new SRectangle(new Point(10,10),50,100);
+		r.addAttributes(new ColorAttributes(true,true,Color.BLUE,Color.RED));
 		r.addAttributes(new SelectionAttributes());
-		r.addAttributes(new ImageAttributes(new File("IMG_1581.jpg"),true));
+		r.addAttributes(new ImageAttributes(new File("IMG_1581.jpg"),false));
 		this.model.add(r);
 		
 		SCircle c = new SCircle(new Point(100,100),10);
 		c.addAttributes(new ColorAttributes(false,true,Color.BLUE,Color.RED));
 		c.addAttributes(new SelectionAttributes());
 		this.model.add(c);
-		
-		SText t= new SText(new Point(100,100),"hello");
-		t.addAttributes(new ColorAttributes(true,true,Color.YELLOW,Color.BLUE));
-		t.addAttributes(new FontAttributes());
-		t.addAttributes(new SelectionAttributes());
-		this.model.add(t);
-		
-		STriangle tr= new STriangle(new Point(10,10),new Point(25,50),new Point(40,30));
-		tr.addAttributes(new ColorAttributes(true,true,Color.BLUE,Color.RED));
-		tr.addAttributes(new SelectionAttributes());
-		this.model.add(tr);
-		
-		SCollection sc = new SCollection();
-		sc.addAttributes(new SelectionAttributes());
-		r= new SRectangle(new Point(20,30),30,30);
-		r.addAttributes(new ColorAttributes(true,false,Color.MAGENTA,Color.BLUE));
-		r.addAttributes(new SelectionAttributes());
-		r.addAttributes(new ImageAttributes(new File("IMG_1581.jpg"),false));
-		sc.add(r);
-		c = new SCircle(new Point(150,100),20);
-		c.addAttributes(new ColorAttributes(false,true,Color.BLUE,Color.DARK_GRAY));
-		c.addAttributes(new SelectionAttributes());
-		sc.add(c);
-		this.model.add(sc);
+//		
+//		SText t= new SText(new Point(100,100),"hello");
+//		t.addAttributes(new ColorAttributes(true,true,Color.YELLOW,Color.BLUE));
+//		t.addAttributes(new FontAttributes());
+//		t.addAttributes(new SelectionAttributes());
+//		this.model.add(t);
+//		
+//		STriangle tr= new STriangle(new Point(10,10),new Point(25,50),new Point(40,30));
+//		tr.addAttributes(new ColorAttributes(true,true,Color.BLUE,Color.RED));
+//		tr.addAttributes(new SelectionAttributes());
+//		this.model.add(tr);
+//		
+//		SCollection sc = new SCollection();
+//		sc.addAttributes(new SelectionAttributes());
+//		r= new SRectangle(new Point(20,30),30,30);
+//		r.addAttributes(new ColorAttributes(true,false,Color.MAGENTA,Color.BLUE));
+//		r.addAttributes(new SelectionAttributes());
+//		r.addAttributes(new ImageAttributes(new File("IMG_1581.jpg"),false));
+//		sc.add(r);
+//		c = new SCircle(new Point(150,100),20);
+//		c.addAttributes(new ColorAttributes(false,true,Color.BLUE,Color.DARK_GRAY));
+//		c.addAttributes(new SelectionAttributes());
+//		sc.add(c);
+//		this.model.add(sc);
 	}
 	
 	public static void main(String[] args) throws IOException

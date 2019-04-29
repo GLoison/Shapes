@@ -58,4 +58,10 @@ public class SCollection extends Shape {
 		
 	}
 
+	@Override
+	public void setSize(int dw, int dh) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
