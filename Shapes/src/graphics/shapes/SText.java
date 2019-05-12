@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 
 import graphics.shapes.attributes.FontAttributes;
+import graphics.shapes.ui.ShapesController;
 
 public class SText extends Shape {
 	
@@ -30,7 +31,12 @@ public class SText extends Shape {
 
 	@Override
 	public void setLoc(Point pt) {
-		this.loc=pt;
+		Rectangle ft = ((FontAttributes) getAttributes("Font")).getBounds(text);
+		if(!ShapesController.r4)
+			this.loc=new Point(pt.x,pt.y+ft.y);
+		else
+			this.loc=new Point(pt.x,pt.y);
+			
 	}
 
 	@Override
@@ -41,7 +47,7 @@ public class SText extends Shape {
 	@Override
 	public Rectangle getBounds() {
 		Rectangle ft = ((FontAttributes) getAttributes("Font")).getBounds(text);
-		return new Rectangle(loc.x,loc.y-ft.height,ft.width,ft.height);
+		return new Rectangle(loc.x,loc.y-ft.y,ft.width,ft.height);
 		
 	}
 
@@ -54,7 +60,15 @@ public class SText extends Shape {
 	@Override
 	public void setSize(int dw, int dh) {
 		// TODO Auto-generated method stub
-		
+		double d =(Math.sqrt(Math.pow(dw,2)+Math.pow(dh,2))/2);
+		double c=(Math.sqrt(Math.pow(d,2)/2));
+		float s=(float) (c*0.75);
+		if(dw<0 || dh<0) {
+			((FontAttributes) getAttributes("Font")).setFont(-s);
+		}
+		else {
+			((FontAttributes) getAttributes("Font")).setFont(s);
+		}
 	}
 
 

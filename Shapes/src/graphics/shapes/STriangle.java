@@ -4,6 +4,8 @@ import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.Rectangle;
 
+import graphics.shapes.ui.ShapesController;
+
 
 public class STriangle extends Shape {
 	
@@ -18,7 +20,7 @@ public class STriangle extends Shape {
 	public Polygon getTriangle() {
 		return tria;
 	}
-	
+		
 	@Override
 	public Point getLoc() {
 		// TODO Auto-generated method stub
@@ -28,7 +30,8 @@ public class STriangle extends Shape {
 	@Override
 	public void setLoc(Point pt) {
 		// TODO Auto-generated method stub
-		this.tria.getBounds().setLocation(pt);
+		this.tria.xpoints[0]=pt.x;
+		this.tria.ypoints[0]=pt.y;
 	}
 
 	@Override
@@ -40,7 +43,7 @@ public class STriangle extends Shape {
 	@Override
 	public Rectangle getBounds() {
 		// TODO Auto-generated method stub
-		return tria.getBounds();
+		return this.tria.getBounds();
 	}
 
 	@Override
@@ -52,7 +55,17 @@ public class STriangle extends Shape {
 	@Override
 	public void setSize(int dw, int dh) {
 		// TODO Auto-generated method stub
-		
+		if(ShapesController.r2) {
+			tria.xpoints[2]=tria.xpoints[2]+dw;
+			tria.ypoints[1]=tria.ypoints[1]+dh;	
+		}
+		if(ShapesController.r3) {
+			tria.xpoints[2]=tria.xpoints[2]+dw;
+		}
+		if(ShapesController.r4) {
+			tria.ypoints[1]=tria.ypoints[1]+dh;	
+		}
+		this.tria=new Polygon(tria.xpoints,tria.ypoints,3);
 	}
 
 }

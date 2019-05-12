@@ -1,7 +1,7 @@
 package graphics.shapes.ui;
 
 import java.awt.Graphics;
-
+import java.awt.Graphics2D;
 
 import graphics.shapes.Shape;
 import graphics.ui.Controller;
@@ -20,7 +20,7 @@ public class ShapesView extends View{
 		super.paintComponent(g);
 		Shape model=(Shape)this.getModel();
 		if(model==null) return;
-		this.draft=new ShapeDraftman((Graphics)g);
+		this.draft=new ShapeDraftman((Graphics2D)g);
 		model.accept(this.draft);
 	}
 	

@@ -27,13 +27,14 @@ public class SCollection extends Shape {
 	
 	@Override
 	public Point getLoc() {
-		this.Loc=getBounds().getLocation();
+		this.Loc= new Point((int) getBounds().getX(),(int) getBounds().getY());
 		return Loc;
 	}
 
 	@Override
 	public void setLoc(Point pt) {
 		this.Loc=pt;
+		collection.get(0).setLoc(pt);
 	}
 
 	@Override
@@ -60,8 +61,9 @@ public class SCollection extends Shape {
 
 	@Override
 	public void setSize(int dw, int dh) {
-		// TODO Auto-generated method stub
-		
+		for(Iterator<Shape> it=collection.iterator();it.hasNext();){
+			it.next().setSize(dw, dh);
+		}
 	}
 
 }

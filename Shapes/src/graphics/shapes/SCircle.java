@@ -20,6 +20,11 @@ public class SCircle extends Shape{
 	public void setRadius(double d) {
 		this.radius=d;
 	}
+//	public Ellipse2D.Double getEllipse() {
+//		Ellipse2D.Double cir= new Ellipse2D.Double(loc.x, loc.y, this.radius*2, this.radius*2);
+//		System.out.println(cir.height);
+//		return cir;
+//	}
 	
 	@Override
 	public Point getLoc() {
@@ -41,6 +46,7 @@ public class SCircle extends Shape{
 		int wh =(int) (2*this.radius);
 		Rectangle rect= new Rectangle(this.loc.x,this.loc.y,wh,wh);
 		return rect;
+//		return  getEllipse().getBounds2D();
 	}
 
 	@Override
@@ -52,12 +58,12 @@ public class SCircle extends Shape{
 	public void setSize(int dw, int dh) {
 		// TODO Auto-generated method stub
 		double d =(Math.sqrt(Math.pow(dw,2)+Math.pow(dh,2))/2);
-		System.out.println(d);
-		if(dw<0) {
+		
+		if(dw<0 || dh<0) {
 			setRadius(this.radius-d);
 		}
 		else {
-			setRadius(d+this.radius);
+			setRadius(this.radius+d);
 		}
 	}
 	

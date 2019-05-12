@@ -46,13 +46,15 @@ public class ShapeDraftman implements ShapeVisitor{
 		}
 		
 		if (i.isImage()) {
-			ShapeDraftman.graph.drawImage(i.getImage(), rect.getLoc().x, rect.getLoc().y, null);
+			ShapeDraftman.graph.drawImage(i.getImage(), rect.getLoc().x, rect.getLoc().y,rect.getBounds().width,rect.getBounds().height, null);
 		}
 		
 		if(s.isSelected()) {
 			ShapeDraftman.graph.setColor(Color.BLACK);
 			ShapeDraftman.graph.drawRect(rect.getLoc().x-10, rect.getLoc().y-10, 10,10);
 			ShapeDraftman.graph.drawRect(rect.getLoc().x+rect.getBounds().width, rect.getLoc().y+rect.getBounds().height, 10,10);
+			ShapeDraftman.graph.drawRect(rect.getLoc().x+rect.getBounds().width, rect.getLoc().y-10, 10,10);
+			ShapeDraftman.graph.drawRect(rect.getLoc().x-10, rect.getLoc().y+rect.getBounds().height, 10,10);
 		}
 		
 	}
@@ -73,7 +75,9 @@ public class ShapeDraftman implements ShapeVisitor{
 		if(s.isSelected()) {
 			ShapeDraftman.graph.setColor(Color.BLACK);
 			ShapeDraftman.graph.drawRect(circle.getLoc().x-10, circle.getLoc().y-10, 10,10);
-			ShapeDraftman.graph.drawRect(circle.getLoc().x+circle.getBounds().width, circle.getLoc().y+circle.getBounds().height, 10,10);
+			ShapeDraftman.graph.drawRect(circle.getBounds().x+circle.getBounds().width, circle.getBounds().y+circle.getBounds().height, 10,10);
+			ShapeDraftman.graph.drawRect(circle.getLoc().x+circle.getBounds().width, circle.getLoc().y-10, 10,10);
+			ShapeDraftman.graph.drawRect(circle.getLoc().x-10, circle.getLoc().y+circle.getBounds().height, 10,10);
 		}
 	}
 
@@ -82,6 +86,9 @@ public class ShapeDraftman implements ShapeVisitor{
 		ColorAttributes c = (ColorAttributes) txt.getAttributes("Color");
 		FontAttributes f=(FontAttributes) txt.getAttributes("Font");
 		SelectionAttributes s= (SelectionAttributes) txt.getAttributes("Selection");
+		
+		ShapeDraftman.graph.setFont(f.font);
+			
 		if (c.isStroked()) {
 			ShapeDraftman.graph.setColor(c.getStrokedColor());
 			ShapeDraftman.graph.drawRect(txt.getBounds().x, txt.getBounds().y, txt.getBounds().width,txt.getBounds().height);
@@ -92,13 +99,16 @@ public class ShapeDraftman implements ShapeVisitor{
 			ShapeDraftman.graph.setColor(c.getFilledColor());
 			ShapeDraftman.graph.fillRect(txt.getBounds().x+1, txt.getBounds().y+1, txt.getBounds().width-1,txt.getBounds().height-1);
 		}
+		
 		ShapeDraftman.graph.setColor(f.fontColor);
 		ShapeDraftman.graph.drawString(txt.getText(), txt.getLoc().x, txt.getLoc().y);
-		
+
 		if(s.isSelected()) {
 			ShapeDraftman.graph.setColor(Color.BLACK);
 			ShapeDraftman.graph.drawRect(txt.getBounds().x-10, txt.getBounds().y-10, 10,10);
 			ShapeDraftman.graph.drawRect(txt.getBounds().x+txt.getBounds().width, txt.getBounds().y+txt.getBounds().height, 10,10);
+			ShapeDraftman.graph.drawRect(txt.getBounds().x+txt.getBounds().width, txt.getBounds().y-10, 10,10);
+			ShapeDraftman.graph.drawRect(txt.getBounds().x-10, txt.getBounds().y+txt.getBounds().height, 10,10);
 		}
 	}
 
@@ -114,6 +124,8 @@ public class ShapeDraftman implements ShapeVisitor{
 			ShapeDraftman.graph.setColor(Color.BLACK);
 			ShapeDraftman.graph.drawRect(collec.getBounds().x-10, collec.getBounds().y-10, 10,10);
 			ShapeDraftman.graph.drawRect(collec.getLoc().x+collec.getBounds().width, collec.getLoc().y+collec.getBounds().height, 10,10);
+			ShapeDraftman.graph.drawRect(collec.getLoc().x+collec.getBounds().width, collec.getLoc().y-10, 10,10);
+			ShapeDraftman.graph.drawRect(collec.getLoc().x-10, collec.getLoc().y+collec.getBounds().height, 10,10);
 		}
 
 	}
@@ -138,8 +150,10 @@ public class ShapeDraftman implements ShapeVisitor{
 		
 		if(s.isSelected()) {
 			ShapeDraftman.graph.setColor(Color.BLACK);
-			ShapeDraftman.graph.drawRect(tria.getLoc().x-10, tria.getLoc().y-10, 10,10);
+			ShapeDraftman.graph.drawRect(tria.getBounds().x-10, tria.getBounds().y-10, 10,10);
 			ShapeDraftman.graph.drawRect(tria.getLoc().x+tria.getBounds().width, tria.getLoc().y+tria.getBounds().height, 10,10);
+			ShapeDraftman.graph.drawRect(tria.getLoc().x+tria.getBounds().width, tria.getLoc().y-10, 10,10);
+			ShapeDraftman.graph.drawRect(tria.getLoc().x-10, tria.getLoc().y+tria.getBounds().height, 10,10);
 		}
 	}
 }
